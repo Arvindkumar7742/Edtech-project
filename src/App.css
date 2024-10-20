@@ -1,0 +1,35 @@
+/* write your css here */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+.shadow-custom {
+  box-shadow: 15px 15px white;
+  box-shadow: 0 -15px 60px rgba(220, 219, 219, 0.3), 15px 15px white;
+}
+
+.gradient-bg {
+  background: linear-gradient(to r, #FFFFFF 82%, #FFFFFF 10%);
+}
+
+.bg-frame{
+  background-image: url("../src//assets//Images//bghome.svg");
+}
+.spinner {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: repeating-conic-gradient(#474bff 0 90deg,#dbdcef 0 180deg);
+  animation: spinner-a78xsi 1s infinite linear;
+}
+
+@keyframes spinner-a78xsi {
+  100% {
+     transform: rotate(1turn);
+  }
+}

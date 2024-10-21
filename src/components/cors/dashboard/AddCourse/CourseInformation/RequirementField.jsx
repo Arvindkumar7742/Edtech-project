@@ -15,6 +15,7 @@ export default function RequirementsField({
 
   useEffect(() => {
     if (editCourse) {
+      console.log(course?.instructions);
       setRequirementsList(course?.instructions)
     }
     register(name, { required: true, validate: (value) => value.length > 0 })

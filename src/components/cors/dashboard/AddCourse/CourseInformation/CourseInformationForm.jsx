@@ -16,6 +16,7 @@ import IconBtn from "../../../../common/IconBtn"
 import Upload from "../Upload"
 import ChipInput from "./ChipInput"
 import RequirementsField from "./RequirementField"
+import { GiCoinsPile } from "react-icons/gi"
 
 export default function CourseInformationForm() {
   const {
@@ -35,23 +36,24 @@ export default function CourseInformationForm() {
   useEffect(() => {
     const getCategories = async () => {
       setLoading(true);
-      const categories = await fetchCourseCategories()
+      const categories = await fetchCourseCategories();
       if (categories.length > 0) {
-        // console.log("categories", categories)
         setCourseCategories(categories)
       }
       setLoading(false);
-      console.log("printing categories==>>",categories);
     }
     // if form is in edit mode
     if (editCourse) {
+      console.log("i am in category and the values are",course.name,course.courseDecreption,course.price,course.tags,course.whatYouWillLearn,
+        course.category, course.instructions,course.thumbnail
+      )
       // console.log("data populated", editCourse)
       setValue("courseTitle", course.name)
       setValue("courseShortDesc", course.courseDecreption)
       setValue("coursePrice", course.price)
-      setValue("courseTags", course.tag)
+      setValue("courseTags", course.tags)
       setValue("courseBenefits", course.whatYouWillLearn)
-      setValue("courseCategory", course.category)
+      setValue("courseCategory", course.Category)
       setValue("courseRequirements", course.instructions)
       setValue("courseImage", course.thumbnail)
     }
@@ -63,13 +65,14 @@ export default function CourseInformationForm() {
   const isFormUpdated = () => {
     const currentValues = getValues()
     // console.log("changes after editing form values:", currentValues)
+    console.log(currentValues.courseCategory," <=> ", course);
     if (
       currentValues.courseTitle !== course.name ||
       currentValues.courseShortDesc !== course.courseDecreption ||
       currentValues.coursePrice !== course.price ||
-      currentValues.courseTags.toString() !== course.tag.toString() ||
+      currentValues.courseTags.toString() !== course.tags.toString() ||
       currentValues.courseBenefits !== course.whatYouWillLearn ||
-      currentValues.courseCategory._id !== course.category._id ||
+      currentValues.courseCategory._id !== course.Category._id ||
       currentValues.courseRequirements.toString() !==
         course.instructions.toString() ||
       currentValues.courseImage !== course.thumbnail
@@ -102,13 +105,13 @@ export default function CourseInformationForm() {
         if (currentValues.coursePrice !== course.price) {
           formData.append("price", data.coursePrice)
         }
-        if (currentValues.courseTags.toString() !== course.tag.toString()) {
+        if (currentValues.courseTags.toString() !== course.tags.toString()) {
           formData.append("tag", JSON.stringify(data.courseTags))
         }
         if (currentValues.courseBenefits !== course.whatYouWillLearn) {
           formData.append("whatYouWillLearn", data.courseBenefits)
         }
-        if (currentValues.courseCategory._id !== course.category._id) {
+        if (currentValues.courseCategory._id !== course.Category._id) {
           formData.append("category", data.courseCategory)
         }
         if (
@@ -146,7 +149,7 @@ export default function CourseInformationForm() {
     formData.append("category", data.courseCategory)
     formData.append("status", COURSE_STATUS.DRAFT)
     formData.append("instructions", JSON.stringify(data.courseRequirements))
-    formData.append("thumbnailImage", data.courseImage)
+    formData.append("thumbnail", data.courseImage)
     setLoading(true)
     const result = await addCourseDetails(formData, token)
     if (result) {

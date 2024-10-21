@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {auth, isInstructer, isAdmin, isStudent} = require('../middlewares/auth');
-const { createCourse, getAllCourses, getCourseDeatils, categoryPageDetails } = require('../controllers/Course');
+const { createCourse, getAllCourses, getCourseDeatils, categoryPageDetails,editCourse } = require('../controllers/Course');
 const { createSection, updateSection, deleteSection } = require('../controllers/Section');
 const { createSubSection, updateSubSection, deleteSubSection } = require('../controllers/SubSection');
 const { createCategory, getAllCategories } = require('../controllers/Category');
@@ -13,6 +13,9 @@ const { createRatingAndReview, getAllrating, getAverageRating, getAllCourseRatin
 
 /* -------------------------- To create the course -------------------------- */
 router.post('/createCourse', auth , isInstructer , createCourse );
+
+/* -------------------------- To edit the course -------------------------- */
+router.post("/editCourse", auth, isInstructer, editCourse)
 
 /* ---------------------------- to get all course --------------------------- */
 router.get('/getAllCourse' , getAllCourses );

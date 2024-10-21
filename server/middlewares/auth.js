@@ -7,6 +7,7 @@ exports.auth = async (req,res,next) =>{
                         req.body.token ||
                         req.header("Authorization").replace("Bearer ", "");
 
+        
         if(!token){
             return res.status(400).json({
                 success:false,
@@ -40,7 +41,7 @@ exports.auth = async (req,res,next) =>{
 exports.isStudent =async (req,res,next) => {
     try{
         if(req.user.accountType !== "Student"){
-            res.status(400).json({
+            return res.status(400).json({
                 success:false,
                 massage:"This is a protected route only for student."
             })
@@ -48,7 +49,7 @@ exports.isStudent =async (req,res,next) => {
         next();
     }
     catch(error){
-        res.status(400).json({
+        return res.status(400).json({
             success:false,
             massage:"User role can not be varified, please check again"
         })
@@ -58,8 +59,8 @@ exports.isStudent =async (req,res,next) => {
 //isInstructer
 exports.isInstructer =async (req,res,next) => {
     try{
-        if(req.user.accountType !== "Instructer"){
-            res.status(400).json({
+        if(req.user.accountType !== "Instructor"){
+            return res.status(400).json({
                 success:false,
                 massage:"This is a protected route only for Instructer."
             })
@@ -67,7 +68,7 @@ exports.isInstructer =async (req,res,next) => {
         next();
     }
     catch(error){
-        res.status(400).json({
+        return res.status(400).json({
             success:false,
             massage:"User role can not be varified, please check again"
         })
@@ -78,7 +79,7 @@ exports.isInstructer =async (req,res,next) => {
 exports.isAdmin =async (req,res,next) => {
     try{
         if(req.user.accountType !== "Admin"){
-            res.status(400).json({
+            return res.status(400).json({
                 success:false,
                 massage:"This is a protected route only for Admin."
             })
@@ -86,7 +87,7 @@ exports.isAdmin =async (req,res,next) => {
         next();
     }
     catch(error){
-        res.status(400).json({
+        return res.status(400).json({
             success:false,
             massage:"User role can not be varified, please check again"
         })

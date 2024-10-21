@@ -129,7 +129,7 @@ exports.getAllCourses = async (req, res) => {
 // Edit Course Details
 exports.editCourse = async (req, res) => {
     try {
-      const { courseId } = req.body
+      const { courseId,status } = req.body
       const updates = req.body
       const course = await Course.findById(courseId)
   
@@ -137,12 +137,15 @@ exports.editCourse = async (req, res) => {
         return res.status(404).json({ error: "Course not found" })
       }
   
+      if(status!=undefined){
+        course.status = status; 
+      }
       // If Thumbnail Image is found, update it
       if (req.files) {
         console.log("thumbnail update")
         const thumbnail = req.files.thumbnail
         const uploaded = await uploadOnCloudinary(thumbnail);
-        course.thumbnail = thumbnailImage.secure_url
+        course.thumbnail = uploaded.secure_url
       }
   
       // Update only the fields that are present in the request body

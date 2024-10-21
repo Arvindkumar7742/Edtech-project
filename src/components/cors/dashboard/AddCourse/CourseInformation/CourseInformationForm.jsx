@@ -44,9 +44,6 @@ export default function CourseInformationForm() {
     }
     // if form is in edit mode
     if (editCourse) {
-      console.log("i am in category and the values are",course.name,course.courseDecreption,course.price,course.tags,course.whatYouWillLearn,
-        course.category, course.instructions,course.thumbnail
-      )
       // console.log("data populated", editCourse)
       setValue("courseTitle", course.name)
       setValue("courseShortDesc", course.courseDecreption)
@@ -72,7 +69,7 @@ export default function CourseInformationForm() {
       currentValues.coursePrice !== course.price ||
       currentValues.courseTags.toString() !== course.tags.toString() ||
       currentValues.courseBenefits !== course.whatYouWillLearn ||
-      currentValues.courseCategory._id !== course.Category._id ||
+      currentValues.courseCategory._id !== course.Category ||
       currentValues.courseRequirements.toString() !==
         course.instructions.toString() ||
       currentValues.courseImage !== course.thumbnail
@@ -112,7 +109,7 @@ export default function CourseInformationForm() {
           formData.append("whatYouWillLearn", data.courseBenefits)
         }
         if (currentValues.courseCategory._id !== course.Category._id) {
-          formData.append("category", data.courseCategory)
+          formData.append("Category", data.courseCategory)
         }
         if (
           currentValues.courseRequirements.toString() !==

@@ -34,9 +34,9 @@ export default function CourseBuilderForm() {
   // handle form submission
   const onSubmit = async (data) => {
     // console.log(data)
-    setLoading(true)
+    setLoading(true);
 
-    let result
+    let result;
 
     if (editSectionName) {
       result = await updateSection(
@@ -47,7 +47,13 @@ export default function CourseBuilderForm() {
         },
         token
       )
-      // console.log("edit", result)
+      const updatedCourseContent = course.courseContent.map((section) =>
+        section._id === editSectionName ? result : section
+      )
+      const updatedCourse = { ...course, courseContent: updatedCourseContent }
+      dispatch(setCourse(updatedCourse))
+      setEditSectionName(null)
+      setValue("sectionName", "")
     } else {
       result = await createSection(
         {
@@ -56,12 +62,7 @@ export default function CourseBuilderForm() {
         },
         token
       )
-    }
-    if (result) {
-      // console.log("section result", result)
       dispatch(setCourse(result))
-      setEditSectionName(null)
-      setValue("sectionName", "")
     }
     setLoading(false)
   }
@@ -86,7 +87,7 @@ export default function CourseBuilderForm() {
       return
     }
     if (
-      course.courseContent.some((section) => section.subSection.length === 0)
+      course.courseContent.some((section) => section.subSections.length === 0)
     ) {
       toast.error("Please add atleast one lecture in each section")
       return
@@ -140,7 +141,7 @@ export default function CourseBuilderForm() {
           )}
         </div>
       </form>
-      {course.courseContent.length > 0 && (
+      {course?.courseContent.length > 0 && (
         <NestedView handleChangeEditSectionName={handleChangeEditSectionName} />
       )}
       {/* Next Prev Button */}

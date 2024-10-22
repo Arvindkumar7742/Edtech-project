@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const {auth, isInstructer, isAdmin, isStudent} = require('../middlewares/auth');
-const { createCourse, getAllCourses, getCourseDeatils, categoryPageDetails,editCourse, getInstructorCourses } = require('../controllers/Course');
+const { createCourse, getAllCourses, getCourseDeatils, categoryPageDetails,editCourse, getInstructorCourses, deleteCourse } = require('../controllers/Course');
 const { createSection, updateSection, deleteSection } = require('../controllers/Section');
 const { createSubSection, updateSubSection, deleteSubSection } = require('../controllers/SubSection');
 const { createCategory, getAllCategories } = require('../controllers/Category');
@@ -22,6 +22,9 @@ router.get('/getAllCourse' , getAllCourses );
 
 /* --------------------------- get course details --------------------------- */
 router.get('/getCourseDetails' ,getCourseDeatils);
+
+ /* --------------------------- To delete an course -------------------------- */
+ router.delete('/deleteCourse',auth, isInstructer, deleteCourse);
 
 /* -------------------------------------------------------------------------- */
 /*                   Routes to create section and subsection                  */

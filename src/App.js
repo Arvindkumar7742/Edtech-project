@@ -20,6 +20,7 @@ import { useSelector } from "react-redux";
 import { ACCOUNT_TYPE } from "./utils/constants";
 import Cart from "./components/cors/dashboard/Cart";
 import AddCourse from "./components/cors/dashboard/AddCourse";
+import MyCourses from "./components/cors/dashboard/MyCourses";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -102,7 +103,7 @@ function App() {
             user?.accountType == ACCOUNT_TYPE.INSTRUCTOR &&
             <>
               <Route path="/dashboard/my-courses"
-                element={<AddCourse />}
+                element={<MyCourses />}
               ></Route>
               <Route path="/dashboard/add-course"
                 element={<AddCourse />}

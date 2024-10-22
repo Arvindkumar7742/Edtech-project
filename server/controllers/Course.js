@@ -195,7 +195,7 @@ exports.editCourse = async (req, res) => {
 exports.getCourseDeatils = async (req, res) => {
     try {
         //get the data -course id
-        const {courseId} = req.body;
+        const { courseId } = req.body;
 
         //validate the data
         const courseDetails = await Course.findById(courseId).
@@ -325,6 +325,10 @@ exports.deleteCourse = async (req, res) => {
             })
         }
 
+        await Category.findByIdAndUpdate(course.Category, {
+            $pull: { courses: courseId },
+        });
+
         // Delete sections and sub-sections
         const courseSections = course.courseContent
         for (const sectionId of courseSections) {
@@ -357,3 +361,50 @@ exports.deleteCourse = async (req, res) => {
         })
     }
 }
+
+//For fetching one category
+exports.categoryPageDetails = async (req, res) => {
+    try {
+        //get the category
+        const { categoryId } = req.body;
+
+        //get all the courses for this category
+        const allCoursesCategory = await Category.findById(categoryId).
+            populate(
+                { path: "courses" }).exec();
+        console.log("allCourses printing==>>", allCoursesCategory);
+        if (!allCoursesCategory) {
+            return res.status(400).json({
+                success: false,
+                message: "Category Not Exist for this categoryId.",
+            })
+        }
+        //get different course for different category
+        const allDifferentCategoryCourse = await Category.find({
+            _id: { $ne: categoryId }
+        }).populate({ path: "courses" }).exec();
+        console.log("allCourses printing==>>", allDifferentCategoryCourse);
+        //get top selling courses
+        // Get top-selling courses across all categories
+        //HW -- need to review again -- for this one
+        const allCategories = await Category.find().populate("courses");
+        console.log("allCourses printing==>>", allCategories);
+        const allCourses = allCategories.flatMap((category) => category.courses);
+        console.log("allCourses printing==>>", allCourses);
+        const mostSellingCourses = allCourses
+            .sort((a, b) => b.sold - a.sold)
+            .slice(0, 10);
+
+        return res.status(200).json({
+            selectedCategory: allCoursesCategory,
+            differentCategories: allDifferentCategoryCourse,
+            mostSellingCourses: mostSellingCourses,
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error",
+            error: error.message,
+        });
+    }
+};

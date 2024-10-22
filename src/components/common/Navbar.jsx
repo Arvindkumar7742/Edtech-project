@@ -56,7 +56,7 @@ export const Navbar = () => {
                                             <div className=' p-3'>
                                             {
                                                sublinks.length ? (<div className='flex flex-col'>{sublinks.map((link,index)=>{
-                                                return (<Link key={index} to={`/categories/`+`${link.name}`.split(" ").join("-")}><span>{link.name}</span></Link>)
+                                                return (<Link key={index} to={`/catalog/`+`${link.name}`.split(" ").join("-")}><span>{link.name}</span></Link>)
                                                })}</div>) :(<div></div>)
                                             }
                                             </div>

@@ -42,7 +42,7 @@ router.delete('/deleteSubSection' , auth ,isInstructer , deleteSubSection);
 /* -------------------------------------------------------------------------- */
 router.post('/createCategory' , auth , isAdmin , createCategory);
 router.get('/showAllCategories' , getAllCategories);
-router.get('/showCategoryPageDetails' , categoryPageDetails);
+router.post('/getCategoryPageDetails' , categoryPageDetails);
 
 /* -------------------------------------------------------------------------- */
 /*                   Routes for creating rating and reviews                   */

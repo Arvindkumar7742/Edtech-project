@@ -396,9 +396,12 @@ exports.categoryPageDetails = async (req, res) => {
             .slice(0, 10);
 
         return res.status(200).json({
-            selectedCategory: allCoursesCategory,
-            differentCategories: allDifferentCategoryCourse,
-            mostSellingCourses: mostSellingCourses,
+            success: true,
+            data: {
+                selectedCategory: allCoursesCategory,
+                differentCategories: allDifferentCategoryCourse,
+                mostSellingCourses: mostSellingCourses,
+            }
         });
     } catch (error) {
         return res.status(500).json({

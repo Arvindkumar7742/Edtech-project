@@ -303,17 +303,12 @@ export const deleteCourse = async (data, token) => {
 }
 
 // get full details of a course
-export const getFullDetailsOfCourse = async (courseId, token) => {
-  const toastId = toast.loading("Loading...")
+export const getFullDetailsOfCourse = async (data, token) => {
+  const toastId = toast.loading("Loading...");
   //   dispatch(setLoading(true));
   let result = null
   try {
-    const response = await apiconnector(
-      "POST",
-      GET_FULL_COURSE_DETAILS_AUTHENTICATED,
-      {
-        courseId,
-      },
+    const response = await apiconnector( "POST", GET_FULL_COURSE_DETAILS_AUTHENTICATED, data,
       {
         Authorization: `Bearer ${token}`,
       }
@@ -323,6 +318,7 @@ export const getFullDetailsOfCourse = async (courseId, token) => {
     if (!response.data.success) {
       throw new Error(response.data.message)
     }
+    console.log("returning the data",response.data.data);
     result = response?.data?.data
   } catch (error) {
     console.log("COURSE_FULL_DETAILS_API API ERROR............", error)

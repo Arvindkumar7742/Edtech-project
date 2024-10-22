@@ -195,7 +195,7 @@ exports.editCourse = async (req, res) => {
 exports.getCourseDeatils = async (req, res) => {
     try {
         //get the data -course id
-        const courseId = req.body.id;
+        const {courseId} = req.body;
 
         //validate the data
         const courseDetails = await Course.findById(courseId).
@@ -211,7 +211,7 @@ exports.getCourseDeatils = async (req, res) => {
                     path: "subSections"
                 }
             })
-            .populate("category")
+            .populate("Category")
             .exec();
 
         if (!courseDetails) {

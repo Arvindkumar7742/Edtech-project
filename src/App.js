@@ -14,17 +14,18 @@ import { ContactUs } from "./components/cors/contactPage/ContactUs"
 import { Dashboard } from "./pages/Dashboard";
 import { PrivateRoute } from "./components/cors/auth/PrivateRoute";
 import MyProfile from "./components/cors/dashboard/MyProfile";
-import  EnrolledCourses  from "./components/cors/dashboard/EnrolledCourses";
+import EnrolledCourses from "./components/cors/dashboard/EnrolledCourses";
 import { Settings } from "./components/cors/dashboard/settings/Settings";
 import { useSelector } from "react-redux";
 import { ACCOUNT_TYPE } from "./utils/constants";
 import Cart from "./components/cors/dashboard/Cart";
 import AddCourse from "./components/cors/dashboard/AddCourse";
 import MyCourses from "./components/cors/dashboard/MyCourses";
+import EditCourse from "./components/cors/dashboard/EditCourse";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
-  
+
   return (
     <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
       <Navbar />
@@ -94,12 +95,12 @@ function App() {
                 element={<EnrolledCourses />}
               ></Route>
               <Route path="/dashboard/cart"
-                element={<Cart/>}
+                element={<Cart />}
               ></Route>
             </>
           }
 
-         {
+          {
             user?.accountType == ACCOUNT_TYPE.INSTRUCTOR &&
             <>
               <Route path="/dashboard/my-courses"
@@ -109,10 +110,10 @@ function App() {
                 element={<AddCourse />}
               ></Route>
               <Route path="/dashboard/instructor"
-              element
-              >
-
-              </Route>
+                element
+              ></Route>
+              <Route path="dashboard/edit-course/:courseId"
+                element={<EditCourse />} />
             </>
           }
         </Route>

@@ -69,7 +69,7 @@ export default function CourseInformationForm() {
       currentValues.coursePrice !== course.price ||
       currentValues.courseTags.toString() !== course.tags.toString() ||
       currentValues.courseBenefits !== course.whatYouWillLearn ||
-      currentValues.courseCategory._id !== course.Category ||
+      currentValues.courseCategory._id !== course.Category._id ||
       currentValues.courseRequirements.toString() !==
         course.instructions.toString() ||
       currentValues.courseImage !== course.thumbnail
@@ -88,7 +88,9 @@ export default function CourseInformationForm() {
       // console.log("changes after editing form values:", currentValues)
       // console.log("now course:", course)
       // console.log("Has Form Changed:", isFormUpdated())
+      console.log("Hum yha hai",0);
       if (isFormUpdated()) {
+        console.log("Hum yha hai",1);
         const currentValues = getValues()
         const formData = new FormData()
         // console.log(data)

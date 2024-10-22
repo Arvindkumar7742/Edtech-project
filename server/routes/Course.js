@@ -17,11 +17,8 @@ router.post('/createCourse', auth , isInstructer , createCourse );
 /* -------------------------- To edit the course -------------------------- */
 router.post("/editCourse", auth, isInstructer, editCourse)
 
-/* ---------------------------- to get all course --------------------------- */
-router.get('/getAllCourse' , getAllCourses );
-
 /* --------------------------- get course details --------------------------- */
-router.get('/getCourseDetails' ,getCourseDeatils);
+router.post('/getFullCourseDetails',auth, isInstructer ,getCourseDeatils);
 
  /* --------------------------- To delete an course -------------------------- */
  router.delete('/deleteCourse',auth, isInstructer, deleteCourse);

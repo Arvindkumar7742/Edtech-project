@@ -5,9 +5,7 @@ const SubSection = require("../models/SubSection");
 exports.createSection = async (req, res) => {
     try {
         //fetch the data from body
-        console.log("hello my name is arvid kumar");
         const { sectionName, courseId } = req.body;
-        console.log(sectionName, courseId );
 
         //validate the data
         if (!sectionName || !courseId) {
@@ -26,7 +24,6 @@ exports.createSection = async (req, res) => {
             })
         }
 
-        console.log("hello");
         //create section
         const section = await Section.create({
             sectionName: sectionName

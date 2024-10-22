@@ -75,12 +75,12 @@ export default function CoursesTable({ courses, setCourses }) {
                 <Td className="flex flex-1 gap-x-4">
                   <img
                     src={course?.thumbnail}
-                    alt={course?.courseName}
+                    alt={course?.name}
                     className="h-[148px] w-[220px] rounded-lg object-cover"
                   />
                   <div className="flex flex-col justify-between">
                     <p className="text-lg font-semibold text-richblack-5">
-                      {course.courseName}
+                      {course.name}
                     </p>
                     <p className="text-xs text-richblack-300">
                       {course.courseDecreption.split(" ").length >
@@ -89,7 +89,7 @@ export default function CoursesTable({ courses, setCourses }) {
                             .split(" ")
                             .slice(0, TRUNCATE_LENGTH)
                             .join(" ") + "..."
-                        : course.courseDescription}
+                        : course.courseDecreption}
                     </p>
                     <p className="text-[12px] text-white">
                       Created: {formatDate(course.createdAt)}

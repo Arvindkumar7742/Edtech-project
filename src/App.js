@@ -23,6 +23,7 @@ import AddCourse from "./components/cors/dashboard/AddCourse";
 import MyCourses from "./components/cors/dashboard/MyCourses";
 import EditCourse from "./components/cors/dashboard/EditCourse";
 import Catalog from "./pages/Catalog";
+import CourseDetails from "./pages/CourseDetails";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -45,6 +46,7 @@ function App() {
 
         <Route path="/" element={<Home />}></Route>
         <Route path="/catalog/:catalogName" element={<Catalog />}></Route>
+        <Route path="courses/:courseId" element={<CourseDetails/>} />
 
         <Route path="/forgot-password" element={
           <OpenRoute>

@@ -45,13 +45,14 @@ export default function CourseInformationForm() {
     // if form is in edit mode
     if (editCourse) {
       // console.log("data populated", editCourse)
+      console.log("tags are here",course.tags);
       setValue("courseTitle", course.name)
       setValue("courseShortDesc", course.courseDecreption)
       setValue("coursePrice", course.price)
       setValue("courseTags", course.tags)
       setValue("courseBenefits", course.whatYouWillLearn)
       setValue("courseCategory", course.Category)
-      setValue("courseRequirements", course.instructions)
+      setValue("courseRequirements", course.instructions);
       setValue("courseImage", course.thumbnail)
     }
     getCategories()

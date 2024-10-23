@@ -19,6 +19,7 @@ router.post("/editCourse", auth, isInstructer, editCourse)
 
 /* --------------------------- get course details --------------------------- */
 router.post('/getFullCourseDetails',auth, isInstructer ,getCourseDeatils);
+router.post('/getCourseDetails',getCourseDeatils);
 
  /* --------------------------- To delete an course -------------------------- */
  router.delete('/deleteCourse',auth, isInstructer, deleteCourse);

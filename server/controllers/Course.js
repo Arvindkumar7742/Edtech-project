@@ -372,7 +372,7 @@ exports.categoryPageDetails = async (req, res) => {
         const allCoursesCategory = await Category.findById(categoryId).
             populate(
                 { path: "courses" }).exec();
-        console.log("allCourses printing==>>", allCoursesCategory);
+
         if (!allCoursesCategory) {
             return res.status(400).json({
                 success: false,
@@ -383,14 +383,14 @@ exports.categoryPageDetails = async (req, res) => {
         const allDifferentCategoryCourse = await Category.find({
             _id: { $ne: categoryId }
         }).populate({ path: "courses" }).exec();
-        console.log("allCourses printing==>>", allDifferentCategoryCourse);
+
         //get top selling courses
         // Get top-selling courses across all categories
         //HW -- need to review again -- for this one
         const allCategories = await Category.find().populate("courses");
-        console.log("allCourses printing==>>", allCategories);
+
         const allCourses = allCategories.flatMap((category) => category.courses);
-        console.log("allCourses printing==>>", allCourses);
+
         const mostSellingCourses = allCourses
             .sort((a, b) => b.sold - a.sold)
             .slice(0, 10);

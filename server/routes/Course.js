@@ -33,6 +33,7 @@ const {
   getAverageRating,
   getAllCourseRating,
 } = require("../controllers/RatingAndReview");
+const { updateCourseProgress } = require("../controllers/courseProgress");
 
 /* -------------------------------------------------------------------------- */
 /*              Routes to create the course(only for instructer)              */
@@ -82,5 +83,8 @@ router.get("/getCourseAllRating", getAllCourseRating);
 
 // Get all Courses Under a Specific Instructor
 router.get("/getInstructorCourses", auth, isInstructer, getInstructorCourses);
+
+// Course progress Update Route
+router.post("/updateCourseProgress", auth, isStudent, updateCourseProgress);
 
 module.exports = router;

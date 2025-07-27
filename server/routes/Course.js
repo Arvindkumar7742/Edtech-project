@@ -32,6 +32,7 @@ const {
   getAllrating,
   getAverageRating,
   getAllCourseRating,
+  getAllRatingReview,
 } = require("../controllers/RatingAndReview");
 const { updateCourseProgress } = require("../controllers/courseProgress");
 
@@ -77,7 +78,7 @@ router.post("/getCategoryPageDetails", categoryPageDetails);
 /*                   Routes for creating rating and reviews                   */
 /* -------------------------------------------------------------------------- */
 router.post("/createRating", auth, isStudent, createRatingAndReview);
-router.get("/getAllRating", getAllrating);
+router.get("/getReviews", getAllRatingReview);
 router.get("/getAverageRating", getAverageRating);
 router.get("/getCourseAllRating", getAllCourseRating);
 

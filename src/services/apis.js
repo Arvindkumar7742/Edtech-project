@@ -58,3 +58,8 @@ export const PAYMENT = {
   VERIFY_SIGNATURE: base_url + "/payment/verifySignature",
   SEND_SUCCESSFUL_EMAIL: base_url + "/payment/sendPaymentSuccessEmail",
 };
+
+// RATINGS AND REVIEWS
+export const ratingsEndpoints = {
+  REVIEWS_DETAILS_API: base_url + "/course/getReviews",
+};

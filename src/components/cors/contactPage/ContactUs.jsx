@@ -1,12 +1,13 @@
-import React from 'react'
-import ContactDetails from './ContactDetails'
-import ContactFormSection from "../AboutPage/ContactFormSection"
-import Footer from '../../common/Footer'
+import React from "react";
+import ContactDetails from "./ContactDetails";
+import ContactFormSection from "../AboutPage/ContactFormSection";
+import Footer from "../../common/Footer";
+import ReviewSlider from "../../common/ReviewSlider";
 
 export const ContactUs = () => {
   return (
-    <div className='flex flex-col mt-[100px] '>
-      <div className='flex flex-row w-11/12 mx-auto gap-x-3'>
+    <div className="flex flex-col mt-[100px] ">
+      <div className="flex flex-row w-11/12 mx-auto gap-x-3">
         <ContactDetails />
         <ContactFormSection flag={true} />
       </div>
@@ -15,9 +16,9 @@ export const ContactUs = () => {
         <h1 className="text-center text-4xl font-semibold mt-8">
           Reviews from other learners
         </h1>
-        {/* <ReviewSlider /> */}
+        <ReviewSlider />
       </div>
       <Footer />
     </div>
-  )
-}
+  );
+};

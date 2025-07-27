@@ -18,8 +18,6 @@ router.post('/reset-password' ,resetPassword);
 //pasword update route
 router.post('/changepassword',auth,changePassword);
 
-//Change password route is pending???
-
 
 //create rating to an course
 module.exports= router

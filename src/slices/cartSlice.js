@@ -34,16 +34,15 @@ const cartSlice = createSlice({
         //remove to cart
         removeFromCart: (state, action) => {
             const course = action.payload;
-            const index = state.cart.findIndex((Item) => Item._id === course._id);
+            const index = state.cart.findIndex((Item) => Item._id == course._id);
             if (index >= 0) {
-                state.totalItems--
-                state.total -= state.cart[index].price
-                state.cart.splice(index, 1)
+                state.totalItems--;
+                state.total -= state.cart[index].price;
+                state.cart.splice(index, 1);
                 // Update to localstorage
                 localStorage.setItem("cart", JSON.stringify(state.cart))
                 localStorage.setItem("total", JSON.stringify(state.total))
                 localStorage.setItem("totalItems", JSON.stringify(state.totalItems))
-                // show toast
                 toast.success("Course removed from cart")
             }
         },

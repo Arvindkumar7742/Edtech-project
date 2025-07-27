@@ -49,7 +49,7 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
             currency: orderResponse?.data?.data?.currency,
             amount: `${orderResponse?.data?.data.amount}`,
             order_id:orderResponse?.data?.data?.id,
-            name:"StudyNotionAK",
+            name:"StudyNotionAK Updated",
             description: "Thank You for Purchasing the Course",
             image:rzpLogo,
             prefill: {
@@ -63,18 +63,20 @@ export async function buyCourse(token, courses, userDetails, navigate, dispatch)
                 verifyPayment({...response, courses}, token, navigate, dispatch);
             }
         }
+        console.log("options==>>",options);
 
         const paymentObject =new window.Razorpay(options);
         paymentObject.open();
         paymentObject.on("Payment failed",function (response){
             toast.error("oops payment failed");
-            // console.log(response.error);
+            console.log(response.error);
         })
+        toast.success("payment success");
+        navigate("/dashboard/enrolled-courses");
 
     }catch(error){
         console.log("PAYMENT API ERROR.....",error);
         toast.error(error.message);
-
     }
 }
 

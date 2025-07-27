@@ -24,6 +24,7 @@ import MyCourses from "./components/cors/dashboard/MyCourses";
 import EditCourse from "./components/cors/dashboard/EditCourse";
 import Catalog from "./pages/Catalog";
 import CourseDetails from "./pages/CourseDetails";
+import { ViewCourse } from "./pages/ViewCourse";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -120,6 +121,13 @@ function App() {
                 element={<EditCourse />} />
             </>
           }
+        </Route>
+
+        {/* Nested Routes for viewCourses */}
+        <Route
+        element={<ViewCourse/>}
+        >
+          <Route></Route>
         </Route>
 
         <Route path="*" element={<Error />}> </Route>

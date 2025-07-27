@@ -25,6 +25,7 @@ export const profile = {
   DELETE_PROFILE_API: base_url + "/profile/deleteuser",
   UPDATE_PROFILE_API: base_url + "/profile/updateProfile",
   GET_ENROLLED_COURSES: base_url + "/profile/getenrolledcourses",
+  GET_INSTRUCTOR_DATA_API: base_url + "/profile/instructorDashboard",
 };
 
 // COURSE ENDPOINTS

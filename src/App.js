@@ -26,6 +26,7 @@ import Catalog from "./pages/Catalog";
 import CourseDetails from "./pages/CourseDetails";
 import ViewCourse from "./pages/ViewCourse";
 import VideoDetails from "./components/cors/ViewCourse/VideoDetails";
+import Instructor from "./components/cors/dashboard/Instructor";
 
 function App() {
   const { user } = useSelector((state) => state.profile);
@@ -124,7 +125,7 @@ function App() {
                 path="/dashboard/add-course"
                 element={<AddCourse />}
               ></Route>
-              <Route path="/dashboard/instructor" element></Route>
+              <Route path="/dashboard/instructor" element={<Instructor />} />
               <Route
                 path="dashboard/edit-course/:courseId"
                 element={<EditCourse />}

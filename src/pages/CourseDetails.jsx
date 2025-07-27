@@ -4,7 +4,6 @@ import { HiOutlineGlobeAlt } from "react-icons/hi"
 import ReactMarkdown from "react-markdown"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-
 import ConfirmationModal from "../components/common/ConfirmationModal"
 import Footer from "../components/common/Footer"
 import RatingStars from "../components/common/RatingStars"
@@ -12,7 +11,7 @@ import CourseAccordionBar from "../components/cors/Course/CourseAccordionBar"
 import CourseDetailsCard from "../components/cors/Course/CourseDetailsCard"
 import { formattedDate } from "../utils/dateFormatter"
 import { fetchCourseDetails } from "../services/operations/courseDetailsAPI"
-// import { buyCourse } from "../services/operations/studentFeaturesAPI"
+import { buyCourse } from "../services/operations/studentFeaturesAPI"
 import GetAvgRating from "../utils/avgRating"
 import { Error } from "./Error"
 
@@ -27,7 +26,7 @@ function CourseDetails() {
   // Getting courseId from url parameter
   const { courseId } = useParams()
 
-  // Declear a state to save the course details
+  // Declare a state to save the course details
   const [response, setResponse] = useState(null)
   const [confirmationModal, setConfirmationModal] = useState(null)
   useEffect(() => {
@@ -101,9 +100,10 @@ function CourseDetails() {
 
   const handleBuyCourse = () => {
     if (token) {
-      //   buyCourse(token, [courseId], user, navigate, dispatch)
+        buyCourse(token, [courseId], user, navigate, dispatch)
       return
     }
+    console.log("tokrn is::",token);
     setConfirmationModal({
       text1: "You are not logged in!",
       text2: "Please login to Purchase Course.",
